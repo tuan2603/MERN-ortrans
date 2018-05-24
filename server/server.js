@@ -1,4 +1,7 @@
-const express = require('express');
+const express = require('express'),
+  jsonwebtoken = require("jsonwebtoken"),
+  bodyParser = require('body-parser');
+
 const fs = require('fs');
 const historyApiFallback = require('connect-history-api-fallback');
 const mongoose = require('mongoose');
@@ -14,6 +17,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const port  = process.env.PORT || 8080;
 
 
+
 // Configuration
 // ================================================================================================
 
@@ -24,6 +28,18 @@ mongoose.Promise = global.Promise;
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(function(req, res, next) {
+  if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === config.bearer) {
+    jsonwebtoken.verify(req.headers.authorization.split(' ')[1], config.secret, function(err, decode) {
+      if (err) req.user = undefined;
+      req.user = decode;
+      next();
+    });
+  } else {
+    req.user = undefined;
+    next();
+  }
+});
 
 // API routes
 require('./routes')(app);
