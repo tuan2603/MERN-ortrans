@@ -1,20 +1,77 @@
 import React, { Component } from 'react';
+import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, Footer, NavLink } from 'mdbreact';
+import { BrowserRouter as Router } from 'react-router-dom';
+import '../../styles/index.css';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Nav from '../Nav/Nav.js';
-const App = ({ children }) => (
-  <>
-    <Header />
+import Routes from '../../Routes';
+import mainLogo from '../../img/logo.gif';
 
-    <Nav />
 
-    <main>
-      {children}
-    </main>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      collapsed: false,
+    };
+    this.handleTogglerClick = this.handleTogglerClick.bind(this);
+    this.handleNavbarClick = this.handleNavbarClick.bind(this);
 
-    <Footer />
-  </>
-);
+  }
+
+  handleTogglerClick(){
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
+  handleNavbarClick(){
+    this.setState({
+      collapsed: false
+    });
+  }
+
+  render() {
+    const collapsed = this.state.collapsed;
+    const overlay = <div id="sidenav-overlay" style={{backgroundColor: 'transparent'}} onClick={this.handleNavbarClick}/>
+    return (
+      <Router>
+        <div className="flyout">
+          <Navbar className="nav-main" expand="md" fixed="top" scrolling>
+            <NavbarBrand href="/">
+              <img src={ mainLogo } alt="or-trans" height="32" /> MDB React
+            </NavbarBrand>
+            <NavbarToggler onClick={this.handleTogglerClick}/>
+            <Collapse isOpen={this.state.collapsed} navbar>
+              <NavbarNav right onClick={this.handleNavbarClick}>
+                <NavItem>
+                  <NavLink to="/">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/css">CSS</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/components">Components</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/advanced">Advanced</NavLink>
+                </NavItem>
+              </NavbarNav>
+            </Collapse>
+          </Navbar>
+          { collapsed && overlay}
+          <main style={{marginTop: '4rem'}}>
+            <Routes />
+          </main>
+
+          <Footer className="nav-main">
+            <p className="footer-copyright mb-0 py-3 text-center">
+              &copy; {(new Date().getFullYear())} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+            </p>
+          </Footer>
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;
