@@ -1,108 +1,59 @@
-import React, { Component } from 'react';
-import 'whatwg-fetch';
+import React from 'react';
+const NavLink = require('react-router-dom').NavLink;
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
+import './HomePage.css';
 
-    this.state = {
-      counters: []
-    };
+import { EdgeHeader, FreeBird, Container, Col, Row, CardBody, Fa } from 'mdbreact';
 
-    this.newCounter = this.newCounter.bind(this);
-    this.incrementCounter = this.incrementCounter.bind(this);
-    this.decrementCounter = this.decrementCounter.bind(this);
-    this.deleteCounter = this.deleteCounter.bind(this);
-
-    this._modifyCounter = this._modifyCounter.bind(this);
-  }
-
-  componentDidMount() {
-    fetch('/api/counters')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          counters: json
-        });
-      });
-  }
-
-  newCounter() {
-    fetch('/api/counters', { method: 'POST' })
-      .then(res => res.json())
-      .then(json => {
-        let data = this.state.counters;
-        data.push(json);
-
-        this.setState({
-          counters: data
-        });
-      });
-  }
-
-  incrementCounter(index) {
-    const id = this.state.counters[index]._id;
-
-    fetch(`/api/counters/${id}/increment`, { method: 'PUT' })
-      .then(res => res.json())
-      .then(json => {
-        this._modifyCounter(index, json);
-      });
-  }
-
-  decrementCounter(index) {
-    const id = this.state.counters[index]._id;
-
-    fetch(`/api/counters/${id}/decrement`, { method: 'PUT' })
-      .then(res => res.json())
-      .then(json => {
-        this._modifyCounter(index, json);
-      });
-  }
-
-  deleteCounter(index) {
-    const id = this.state.counters[index]._id;
-
-    fetch(`/api/counters/${id}`, { method: 'DELETE' })
-      .then(_ => {
-        this._modifyCounter(index, null);
-      });
-  }
-
-  _modifyCounter(index, data) {
-    let prevData = this.state.counters;
-
-    if (data) {
-      prevData[index] = data;
-    } else {
-      prevData.splice(index, 1);
-    }
-
-    this.setState({
-      counters: prevData
-    });
-  }
-
-  render() {
-    return (
-      <>
-        <p>Counters:</p>
-
-        <ul>
-          { this.state.counters.map((counter, i) => (
-            <li key={i}>
-              <span>{counter.count} </span>
-              <button onClick={() => this.incrementCounter(i)}>+</button>
-              <button onClick={() => this.decrementCounter(i)}>-</button>
-              <button onClick={() => this.deleteCounter(i)}>x</button>
-            </li>
-          )) }
-        </ul>
-
-        <button onClick={this.newCounter}>New counter</button>
-      </>
+class HomePageMain extends React.Component {
+  render(){
+    return(
+      <div>
+        <EdgeHeader color="stylish-color-organ darken-3" />
+        <FreeBird>
+          <Row>
+            <Col md="10" className="mx-auto float-none white z-depth-1 py-2 px-2">
+              <CardBody>
+                <h2 className="h2-responsive"><strong>MDB React</strong></h2>
+                <p className="pb-4">React Bootstrap with Material Design</p>
+              </CardBody>
+            </Col>
+          </Row>
+        </FreeBird>
+        <Container className="home-container">
+          <Row>
+            <Col md="10" className="mx-auto mt-4">
+              <p className="text-center">Google has designed a Material Design to make the web more beautiful and more user-friendly.</p>
+              <p className="text-center">Twitter has created a Bootstrap to support you in faster and easier development of responsive and effective websites.</p>
+              <p className="text-center">We present you a framework containing the best features of both of them - Material Design for Bootstrap.</p>
+              <hr/>
+              <h3 className="text-center mb-3">See it in action</h3>
+              <Row>
+                <Col md="4" className="text-center home-feature-box">
+                  <NavLink to="/css">
+                    <Fa icon="css3" className="pink-text" />
+                    <span>CSS</span>
+                  </NavLink>
+                </Col>
+                <Col md="4" className="text-center home-feature-box">
+                  <NavLink to="/components">
+                    <Fa icon="cubes" className="blue-text" />
+                    <span>Components</span>
+                  </NavLink>
+                </Col>
+                <Col md="4" className="text-center home-feature-box">
+                  <NavLink to="/advanced">
+                    <Fa icon="code" className="green-text" />
+                    <span>Advanced</span>
+                  </NavLink>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
 
-export default Home;
+export default HomePageMain;

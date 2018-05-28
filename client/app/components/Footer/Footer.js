@@ -5,7 +5,7 @@ class FooterMain extends React.Component {
   render(){
     return(
       <div>
-        <Footer color="stylish-color-dark" className="font-small pt-4 mt-4">
+        <Footer color="stylish-color-organ" className="font-small pt-4 mt-4">
           <Container className="text-center text-md-left">
             <Row className="text-center text-md-left mt-3 pb-3">
               <Col md="3" lg="3" xl="3" className="mx-auto mt-3">
@@ -40,7 +40,7 @@ class FooterMain extends React.Component {
             <hr/>
             <Row className="d-flex align-items-center">
               <Col md="8" lg="8">
-                <p className="text-center text-md-left grey-text">&copy; {(new Date().getFullYear())} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a></p>
+                <p className="text-center text-md-left grey-text">&copy; {(new Date().getFullYear())} Copyright: <a href="https://www.or-trans.com"> or-trans.com </a></p>
               </Col>
               <Col md="4" lg="4" className="ml-lg-0">
                 <div className="text-center text-md-right">

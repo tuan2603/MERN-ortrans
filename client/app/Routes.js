@@ -32,13 +32,15 @@ import HoverPage from './pages/HoverPage';
 import FormsPage from './pages/FormsPage';
 import ChartsPage from './pages/ChartsPage';
 import ScrollBarPage from './pages/ScrollBarPage';
+import HomeMain from './components/Home/Home';
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
         {/* FREE */}
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' component={HomeMain} />
+        <Route exact path='/home' component={HomePage} />
         <Route exact path='/css' component={CSSPage} />
         <Route exact path='/css/table' component={TablePage} />
         <Route exact path='/components' component={ComponentsPage} />
