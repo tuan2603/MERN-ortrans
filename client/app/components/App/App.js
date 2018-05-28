@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import '../../styles/index.css';
 
 import Routes from '../../Routes';
+import FooterMain from '../Footer/Footer';
 import mainLogo from '../../img/logo.gif';
 
 
@@ -32,13 +33,13 @@ class App extends Component {
 
   render() {
     const collapsed = this.state.collapsed;
-    const overlay = <div id="sidenav-overlay" style={{backgroundColor: 'transparent'}} onClick={this.handleNavbarClick}/>
+    const overlay = <div id="sidenav-overlay" style={{backgroundColor: 'transparent', color: "#fff"}} onClick={this.handleNavbarClick}/>;
     return (
       <Router>
         <div className="flyout">
           <Navbar className="nav-main" expand="md" fixed="top" scrolling>
             <NavbarBrand href="/">
-              <img src={ mainLogo } alt="or-trans" height="32" /> MDB React
+              <img src={ mainLogo } alt="or-trans" height="32" /> OR - TRANS
             </NavbarBrand>
             <NavbarToggler onClick={this.handleTogglerClick}/>
             <Collapse isOpen={this.state.collapsed} navbar>
@@ -62,12 +63,7 @@ class App extends Component {
           <main style={{marginTop: '4rem'}}>
             <Routes />
           </main>
-
-          <Footer className="nav-main">
-            <p className="footer-copyright mb-0 py-3 text-center">
-              &copy; {(new Date().getFullYear())} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-            </p>
-          </Footer>
+          <FooterMain />
         </div>
       </Router>
     );

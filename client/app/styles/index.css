@@ -13,6 +13,14 @@
   color: white;
 }
 
+.Ripple-parent{
+  color: white;
+}
+
+.navbar-brand {
+  color: white;
+}
+
 .home-feature-box .fa {
 	font-size:6rem;
 }
