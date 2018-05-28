@@ -48,6 +48,9 @@ class App extends Component {
                   <NavLink to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink to="/signin">Sign In</NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink to="/css">CSS</NavLink>
                 </NavItem>
                 <NavItem>

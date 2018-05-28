@@ -168,8 +168,8 @@ let SingIN = (user, res) => {
 
 let Messages = {
     1: "Send mail or message code vefrify fail",
-    2: "Register user fail",
-    3: "Register user error",
+    2: "Contacts user fail",
+    3: "Contacts user error",
     4: "Find user fail",
     5: "User exits but not active",
     6: "Check mail code verify",
@@ -368,7 +368,7 @@ exports.register_old = function (req, res) {
                 }
                 else {
                     return res.status(400).send({
-                        message: 'Register fail',
+                        message: 'Contacts fail',
                         value: false
                     });
                 }

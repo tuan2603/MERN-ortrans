@@ -33,6 +33,7 @@ import FormsPage from './pages/FormsPage';
 import ChartsPage from './pages/ChartsPage';
 import ScrollBarPage from './pages/ScrollBarPage';
 import HomeMain from './components/Home/Home';
+import SignIn from './components/Contacts/Signin';
 
 class Routes extends React.Component {
   render() {
@@ -41,6 +42,7 @@ class Routes extends React.Component {
         {/* FREE */}
         <Route exact path='/' component={HomeMain} />
         <Route exact path='/home' component={HomePage} />
+        <Route exact path='/signin' component={SignIn} />
         <Route exact path='/css' component={CSSPage} />
         <Route exact path='/css/table' component={TablePage} />
         <Route exact path='/components' component={ComponentsPage} />

@@ -10,7 +10,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "webpack -p --progress --profile --colors && nodemon server",
+    "start": "webpack -p --progress --profile --colors && node server",
     "start:dev": "node server"
   },
   "engines": {
@@ -48,6 +48,7 @@
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
+    "react-intl-tel-input": "^5.0.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "sass-loader": "^6.0.7",
