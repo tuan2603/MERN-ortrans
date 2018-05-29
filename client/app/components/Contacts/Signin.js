@@ -1,30 +1,36 @@
 import React from 'react';
 import IntlTelInput from 'react-intl-tel-input';
-import 'file?name=libphonenumber.js!../../../../node_modules/react-intl-tel-input/dist/libphonenumber.js';
+import { Input, FormInline, Button, Container, Row, Col } from 'mdbreact';
+import 'file-loader?name=libphonenumber.js!../../../../node_modules/react-intl-tel-input/dist/libphonenumber.js';
 import '../../../../node_modules/react-intl-tel-input/dist/main.css';
 
-import { Input, FormInline, Button, Container, Row, Col } from 'mdbreact';
+class SimpleSelect extends React.Component {
 
-
-class SignIN extends React.Component {
   constructor(props) {
     super(props);
+    this.state ={
+      value: '',
+      ecountryData: '',
+      phone: '0975227856',
+    };
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
 
 
+  onChangeHandler(data){
+    console.log(data);
+  };
 
   render() {
     return (
-      <Container fluid style={{textAlign: 'initial'}}>
-        <IntlTelInput
-          preferredCountries={['vn']}
-          css={ ['intl-tel-input', 'form-control'] }
-          utilsScript={ 'libphonenumber.js' }
-        />
-      </Container>
+      <div>
+        <IntlTelInput css={['intl-tel-input', 'form-control']}
+                      utilsScript={'libphonenumber.js'} />
+      </div>
     );
   }
-};
+}
 
-export default SignIN;
+
+export default SimpleSelect;

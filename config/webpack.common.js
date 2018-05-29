@@ -8,7 +8,6 @@ const helpers = require('./helpers');
 
 const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
-
 module.exports = {
   entry: {
     'app': [
@@ -24,15 +23,15 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.scss', '.html'],
     alias: {
-      'app': 'client/app'
+      'app': 'client/app',
     }
   },
 
   module: {
-    rules: [
+     rules: [
       // JS files
       {
-        test: /\.jsx?$/,
+        test: /\.(jsx|js)?$/,
         include: helpers.root('client'),
         loader: 'babel-loader'
       },
