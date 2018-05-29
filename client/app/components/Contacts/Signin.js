@@ -18,16 +18,22 @@ class SimpleSelect extends React.Component {
 
 
 
-  onChangeHandler(data){
-    console.log(data);
+  onChangeHandler(status, value, countryData, number, id){
+    console.log(status, value, countryData, number, id);
   };
 
   render() {
     return (
-      <div>
-        <IntlTelInput css={['intl-tel-input', 'form-control']}
+      <div className="container">
+        <IntlTelInput
+          onPhoneNumberChange={ this.onChangeHandler }
+          onPhoneNumberBlur={ this.onChangeHandler }
+          preferredCountries={['vn']}
+          onSelectFlag={null}
+          css={['intl-tel-input', 'form-control']}
                       utilsScript={'libphonenumber.js'} />
       </div>
+
     );
   }
 }
